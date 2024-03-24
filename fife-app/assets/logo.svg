@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <ellipse style="stroke: rgb(0, 0, 0); fill-rule: nonzero; paint-order: fill; stroke-miterlimit: 1; stroke-dashoffset: -50px; stroke-dasharray: 0; stroke-width: 20px; fill: rgb(253, 230, 162);" cx="250" cy="250" rx="233.721" ry="233.721"/>
+  <spanath style="stroke: rgb(0, 0, 0);" d="M 136.073 298.916 C 136.073 389.433 334.955 422.308 363.788 298.916 C 369.474 274.583 300.656 355.456 136.073 298.916"/>
+  <ellipse style="stroke: rgb(0, 0, 0);" cx="145.14" cy="183.257" rx="24.36" ry="39.362"/>
+  <ellipse style="stroke: rgb(0, 0, 0);" cx="353.629" cy="183.257" rx="24.36" ry="39.362"/>
+</svg>
