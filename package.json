@@ -17,7 +17,8 @@
     "react-dom": "^18",
     "react-ionicons": "^4.2.1",
     "react-redux": "^9.1.0",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -26,5 +27,11 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "typescript": "^5"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
   }
 }
