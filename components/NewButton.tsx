@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { shadeColor, isBright, useWindowSize } from '@/lib/functions'
 
 export function NewButton({
@@ -14,7 +14,6 @@ export function NewButton({
     info,
     loading = false,
 }) {
-    const ref = useRef()
     const isHovered = false
     const [rect, setRect] = useState(null)
     const { width } = useWindowSize()
@@ -34,7 +33,6 @@ export function NewButton({
     return (
         <>
             <div
-                ref={ref}
                 onLayout={(event) => {
                     //setRect(event.nativeEvent.layout.)
                 }}

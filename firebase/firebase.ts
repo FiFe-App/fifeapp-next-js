@@ -420,31 +420,31 @@ const ctx = ({ children }) => {
                     var pendingCred = error.credential
                     var email = error.email
                     // Get sign-in methods for this email.
-                    fetchSignInMethodsForEmail(auth, email).then(
-                        function (methods) {
-                            // Step 3.
-                            // If the user has several sign-in methods,
-                            // the first method in the list will be the "recommended" method to use.
-                            if (methods[0] === 'password') {
-                                // Asks the user their password.
-                                // In real scenario, you should handle this asynchronously.
-                                var password = 'password' //promptUserForPassword(); // TODO: implement promptUserForPassword.
-                                auth.signInWithEmailAndPassword(email, password)
-                                    .then(function (result) {
-                                        // Step 4a.
-                                        return result.user.linkWithCredential(
-                                            pendingCred
-                                        )
-                                    })
-                                    .then(function () {
-                                        // Facebook account successfully linked to the existing Firebase user.
-                                        response = { success: true }
-                                    })
-                                return
-                            }
-                            response = { error: 'facebook login error' }
+                    fetchSignInMethodsForEmail(auth, email).then(function (
+                        methods
+                    ) {
+                        // Step 3.
+                        // If the user has several sign-in methods,
+                        // the first method in the list will be the "recommended" method to use.
+                        if (methods[0] === 'password') {
+                            // Asks the user their password.
+                            // In real scenario, you should handle this asynchronously.
+                            var password = 'password' //promptUserForPassword(); // TODO: implement promptUserForPassword.
+                            auth.signInWithEmailAndPassword(email, password)
+                                .then(function (result) {
+                                    // Step 4a.
+                                    return result.user.linkWithCredential(
+                                        pendingCred
+                                    )
+                                })
+                                .then(function () {
+                                    // Facebook account successfully linked to the existing Firebase user.
+                                    response = { success: true }
+                                })
+                            return
                         }
-                    )
+                        response = { error: 'facebook login error' }
+                    })
                 }
 
                 // ...
