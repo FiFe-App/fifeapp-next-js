@@ -10,7 +10,7 @@ import router from 'next/router'
 import { useState } from 'react'
 import styles from '@/styles/aboutDesign'
 import ErrorBoundary from '@/components/ErrorHandling'
-import { MyText } from '@/components/MyText'
+import { Text } from '@/components/Text'
 import AuthoredImage from '@/components/AuthoredImage'
 import Comments from '@/components/firebase/Comments'
 
@@ -56,20 +56,20 @@ const About = () => {
                     <Row style={{ alignItems: 'center', textAlign: 'center' }}>
                         <Smiley style={{ margin: 32 }} />
                         <div style={{ flex: 1 }}>
-                            <MyText size={50}>FiFe App</MyText>
-                            <MyText size={30} style={{ marginTop: -8 }}>
+                            <Text size={50}>FiFe App</Text>
+                            <Text size={30} style={{ marginTop: -8 }}>
                                 A biztonságos online tér
-                            </MyText>
+                            </Text>
                         </div>
                     </Row>
-                    <MyText style={{ textAlign: 'left', fontSize: 17 }}>
+                    <Text style={{ textAlign: 'left', fontSize: 17 }}>
                         {'\n'}A mai elszigetelt világban szükség van egy olyan
                         rendszerre, amely összehozza a jóérzésű embereket egy
                         biztonságos közösségbe.
                         {'\n'}Ez a gondolat ihlette a{' '}
                         <b>Fiatal Felnőttek applikációt</b>, amely sokrétű
                         online felületet nyújt a nagyvárosban élőknek.
-                    </MyText>
+                    </Text>
                 </div>
                 <Auto
                     style={{
@@ -78,7 +78,7 @@ const About = () => {
                         justifyItems: 'center',
                     }}
                 >
-                    <MyText
+                    <Text
                         contained
                         style={{
                             flexGrow: 1,
@@ -86,7 +86,7 @@ const About = () => {
                             order: small ? 3 : 0,
                         }}
                     >
-                        <MyText title>Cserebere</MyText>
+                        <Text title>Cserebere</Text>
                         {'\n'}
                         Egy egyszerű adok-veszek oldal, ahol keresgélhetsz
                         illetve hirdethetsz eladó tárgyak, munkák, kiadó lakások
@@ -99,7 +99,7 @@ const About = () => {
                                 color="#fdcf99"
                             />
                         </div>
-                    </MyText>
+                    </Text>
                     <AuthoredImage
                         authorName="Vitányi Regina"
                         src={require('@/assets/img-prof.jpg')}
@@ -114,7 +114,7 @@ const About = () => {
                     />
                 </Auto>
                 <div style={{ alignItems: 'center', ...styles }}>
-                    <MyText title>Bizniszelj!</MyText>
+                    <Text title>Bizniszelj!</Text>
                     <Auto style={{ flex: undefined, marginTop: 10 }}>
                         <div
                             style={{
@@ -124,14 +124,14 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <MyText size={17} bold>
+                            <Text size={17} bold>
                                 1. Mihez értesz?
-                            </MyText>
-                            <MyText size={17}>
+                            </Text>
+                            <Text size={17}>
                                 Oszd meg másokkal, hogy miben vagy tehetséges!
                                 Akár kézműves termékeket készítesz, korrepetálsz
                                 vagy tanácsot adsz, itt hirdetheted magad.
-                            </MyText>
+                            </Text>
                         </div>
                         <div
                             style={{
@@ -141,13 +141,13 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <MyText size={17} bold>
+                            <Text size={17} bold>
                                 2. Lépj kapcsolatba!
-                            </MyText>
-                            <MyText size={17}>
+                            </Text>
+                            <Text size={17}>
                                 Keress a szakemberek, művészek, alkotók közt!
                                 Fedezd fel a többiek bizniszeit!
-                            </MyText>
+                            </Text>
                         </div>
                         <div
                             style={{
@@ -157,12 +157,12 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <MyText size={17} bold>
+                            <Text size={17} bold>
                                 3. Köss biznisz kapcsolatot!
-                            </MyText>
-                            <MyText size={17}>
+                            </Text>
+                            <Text size={17}>
                                 Keressétek meg egymásban a kereslet és kínálatot
-                            </MyText>
+                            </Text>
                         </div>
                         <div
                             style={{
@@ -172,13 +172,13 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <MyText size={17} bold>
+                            <Text size={17} bold>
                                 4. Ajánlj be másokat!
-                            </MyText>
-                            <MyText size={17}>
+                            </Text>
+                            <Text size={17}>
                                 Jelezz vissza, kik azok akik valódi segitséget
                                 tudnak nyújtani.
-                            </MyText>
+                            </Text>
                         </div>
                     </Auto>
                     <NewButton title="Irány Bizniszelni!" />
@@ -196,21 +196,21 @@ const About = () => {
                         }}
                     />
 
-                    <MyText contained style={{ ...(small && { order: 3 }) }}>
-                        <MyText title>Pajtások</MyText>
+                    <Text contained style={{ ...(small && { order: 3 }) }}>
+                        <Text title>Pajtások</Text>
                         {'\n'}Az oldal biztonságát az úgynevezett
                         pajtásrendszerrel biztosítjuk. Pajtásodnak akkor
                         jelölhetsz valakit, ha megbízol az illetőben. Bizonyos
                         funkciókat pedig csak akkor használhatsz, ha megfelelő
                         mennyiségű ember már megbízhatónak jelölt téged.
-                    </MyText>
+                    </Text>
                 </Auto>
 
                 <div style={{}}>
-                    <MyText contained style={{ textAlign: 'center' }}>
-                        <MyText title>Csatlakozz a FiFék közösségéhez!</MyText>
+                    <Text contained style={{ textAlign: 'center' }}>
+                        <Text title>Csatlakozz a FiFék közösségéhez!</Text>
                         {'\n'}
-                        <MyText>Fifék így nyilatkoztak...</MyText>
+                        <Text>Fifék így nyilatkoztak...</Text>
                         <Comments
                             style={{ marginLeft: small ? 0 : 50 }}
                             path="aboutComments"
@@ -224,11 +224,11 @@ const About = () => {
                                 borderRadius: 8,
                             }}
                         />
-                    </MyText>
+                    </Text>
                 </div>
                 <Auto style={{ flex: 'none' }}>
-                    <MyText contained>
-                        <MyText title>Rólam</MyText>
+                    <Text contained>
+                        <Text title>Rólam</Text>
                         {'\n'}
                         Kristóf Ákos vagyok, én találtam ki és fejlesztem
                         egyedül a fife appot. Ez egy olyan projekt, amibe
@@ -246,7 +246,7 @@ const About = () => {
                             title="Itt tudsz adományozni!"
                             style={{ alignSelf: small ? 'center' : 'flex-end' }}
                         />
-                    </MyText>
+                    </Text>
                     <Image
                         src={require('@/assets/en.jpeg')}
                         resizeMode="cover"
@@ -259,11 +259,11 @@ const About = () => {
                         }}
                     />
                 </Auto>
-                <MyText
+                <Text
                     style={{ fontSize: 28, textAlign: 'center', marginTop: 30 }}
                 >
                     Csatlakozz a fifékhez!
-                </MyText>
+                </Text>
                 <Row
                     style={{
                         alignItems: 'center',

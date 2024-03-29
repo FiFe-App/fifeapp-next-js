@@ -1,9 +1,35 @@
-export const MyText = (props) => {
-    const { title, size, contained, bold, light, selectable } = props
+import { FC, ReactNode } from 'react'
+import classNames from 'classnames'
+
+interface Props {
+    title: boolean
+    size: number
+    contained: boolean
+    bold: boolean
+    light: boolean
+    selectable: boolean
+    children: ReactNode
+    style: Record<string, unknown>
+}
+
+export const Text: FC<Props> = ({
+    title,
+    size,
+    contained,
+    bold,
+    light,
+    selectable,
+    children,
+    ...props
+}) => {
+    const classes = classNames({
+        container: contained,
+    })
+
     return (
         <span
             {...props}
-            className={contained && 'container'}
+            className={classes}
             style={{
                 ...{ letterSpacing: -1 },
                 ...(title && {
@@ -18,7 +44,7 @@ export const MyText = (props) => {
                 ...props?.style,
             }}
         >
-            {props?.children}
+            {children}
         </span>
     )
 }

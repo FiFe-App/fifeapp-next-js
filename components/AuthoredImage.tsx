@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Image from 'next/image'
-import { MyText } from './MyText'
+import { Text } from './Text'
 import router from 'next/router'
 
 const AuthoredImage = (props) => {
@@ -32,9 +32,9 @@ const AuthoredImage = (props) => {
                         backgroundColor: '#000000aa',
                     }}
                 >
-                    <MyText style={{ color: 'white' }}>
+                    <Text style={{ color: 'white' }}>
                         készítette: {authorName}
-                    </MyText>
+                    </Text>
                 </div>
             )}
         </div>

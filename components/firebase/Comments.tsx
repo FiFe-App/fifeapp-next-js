@@ -15,7 +15,7 @@ import { ArrowRedoOutline } from 'react-ionicons'
 import UrlText from '../UrlText'
 import { Row } from '../Row'
 import { NewButton } from '../NewButton'
-import { MyText } from '../MyText'
+import { Text } from '../Text'
 import router from 'next/router'
 
 const Comments = ({
@@ -129,9 +129,9 @@ const Comments = ({
                             loading={loading}
                         />
                     </Row>
-                    <MyText size={20} style={{ marginLeft: 10, marginTop: 10 }}>
+                    <Text size={20} style={{ marginLeft: 10, marginTop: 10 }}>
                         Kommentek:
-                    </MyText>
+                    </Text>
                 </>
             )}
             {!!list?.length && (
@@ -164,9 +164,9 @@ const Comments = ({
                                             })
                                     }}
                                 >
-                                    <MyText>
+                                    <Text>
                                         <b>{comment.author}</b>
-                                    </MyText>
+                                    </Text>
                                 </div>
 
                                 <UrlText text={comment.text} />
@@ -179,9 +179,9 @@ const Comments = ({
                 <Loading />
             ) : (
                 !list?.length && (
-                    <MyText style={{ padding: 20 }}>
+                    <Text style={{ padding: 20 }}>
                         Még nem érkezett komment
-                    </MyText>
+                    </Text>
                 )
             )}
         </div>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { MyText } from './MyText'
+import { Text } from './Text'
 
 const UrlText = ({ text = '', style }) => {
     const regex =
@@ -17,31 +17,29 @@ const UrlText = ({ text = '', style }) => {
                 console.log('link', link)
                 const start = text.indexOf(link)
                 const end = start + link?.length
+                list.push(<Text key={ind + 's'}>{text.slice(pre, start)}</Text>)
                 list.push(
-                    <MyText key={ind + 's'}>{text.slice(pre, start)}</MyText>
-                )
-                list.push(
-                    <MyText key={ind + 'k'}>
+                    <Text key={ind + 'k'}>
                         <div
                             onClick={() => {
                                 document.open(text.slice(start, end))
                             }}
                         >
-                            <MyText style={{ color: 'blue' }}>
+                            <Text style={{ color: 'blue' }}>
                                 {text.slice(start, end)}
-                            </MyText>
+                            </Text>
                         </div>
-                    </MyText>
+                    </Text>
                 )
                 pre += end
             })
-        list.push(<MyText key={'e'}>{text.slice(pre, text.length)}</MyText>)
+        list.push(<Text key={'e'}>{text.slice(pre, text.length)}</Text>)
     }
     useEffect(() => {
         makeText()
     }, [text])
 
-    return <MyText style={style}>{result}</MyText>
+    return <Text style={style}>{result}</Text>
 }
 
 export default UrlText
