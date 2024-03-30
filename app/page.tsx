@@ -8,14 +8,14 @@ import Image from 'next/image'
 import router from 'next/router'
 import { useState } from 'react'
 import styles from '@/styles/aboutDesign'
-import ErrorBoundary from '@/components/ErrorHandling'
 import AuthoredImage from '@/components/AuthoredImage'
 import Comments from '@/components/firebase/Comments'
 import { Box, Button, Heading, Text } from '@radix-ui/themes'
+import { getDatabase, push, ref, set } from 'firebase/database'
 
 const About = () => {
     const small = false //useWindowDimensions().width <= 900;
-    //const db = getDatabase()
+    const db = getDatabase()
     const navigation = router
     const [email, setEmail] = useState('')
     const [sent, setSent] = useState(false)
@@ -78,7 +78,7 @@ const About = () => {
                     }}
                 >
                     <Text
-                        contained
+                        
                         style={{
                             flexGrow: 1,
                             marginBottom: 20,
@@ -109,7 +109,7 @@ const About = () => {
                         }}
                     />
                 </Auto>
-                <Box style={{ alignItems: 'center', ...styles }}>
+                <Box style={{ alignItems: 'center', ...styles.container }}>
                     <Heading>Bizniszelj!</Heading>
                     <Auto style={{ flex: undefined, marginTop: 10 }}>
                         <Box
@@ -120,10 +120,10 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Text size={17} bold>
+                            <Text size="2">
                                 1. Mihez értesz?
                             </Text>
-                            <Text size={17}>
+                            <Text size="2">
                                 Oszd meg másokkal, hogy miben vagy tehetséges!
                                 Akár kézműves termékeket készítesz, korrepetálsz
                                 vagy tanácsot adsz, itt hirdetheted magad.
@@ -137,10 +137,10 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Text size={17} bold>
+                            <Text size="2">
                                 2. Lépj kapcsolatba!
                             </Text>
-                            <Text size={17}>
+                            <Text size="2">
                                 Keress a szakemberek, művészek, alkotók közt!
                                 Fedezd fel a többiek bizniszeit!
                             </Text>
@@ -153,10 +153,10 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Text size={17} bold>
+                            <Text size="2">
                                 3. Köss biznisz kapcsolatot!
                             </Text>
-                            <Text size={17}>
+                            <Text size="2">
                                 Keressétek meg egymásban a kereslet és kínálatot
                             </Text>
                         </Box>
@@ -168,10 +168,10 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Text size={17} bold>
+                            <Text size="2" >
                                 4. Ajánlj be másokat!
                             </Text>
-                            <Text size={17}>
+                            <Text size="2">
                                 Jelezz vissza, kik azok akik valódi segitséget
                                 tudnak nyújtani.
                             </Text>
@@ -192,7 +192,7 @@ const About = () => {
                         }}
                     />
 
-                    <Text contained style={{ ...(small && { order: 3 }) }}>
+                    <Text style={small ? { order: 3 }: {}}>
                         <Heading>Pajtások</Heading>
                         {'\n'}Az oldal biztonságát az úgynevezett
                         pajtásrendszerrel biztosítjuk. Pajtásodnak akkor
@@ -203,7 +203,7 @@ const About = () => {
                 </Auto>
 
                 <Box style={{}}>
-                    <Text contained style={{ textAlign: 'center' }}>
+                    <Text style={{ textAlign: 'center' }}>
                         <Heading>Csatlakozz a FiFék közösségéhez!</Heading>
                         {'\n'}
                         <Text>Fifék így nyilatkoztak...</Text>
@@ -223,7 +223,7 @@ const About = () => {
                     </Text>
                 </Box>
                 <Auto style={{ flex: 'none' }}>
-                    <Text contained>
+                    <Text>
                         <Heading>Rólam</Heading>
                         {'\n'}
                         Kristóf Ákos vagyok, én találtam ki és fejlesztem
@@ -236,14 +236,14 @@ const About = () => {
                         száz forinttal segítsd az elindulásunkat:){'\n'}
                         <Button
                             onClick={() => {
-                                Linking.openURL('https://patreon.com/fifeapp')
+                                location.replace('https://patreon.com/fifeapp');
                             }}
                             style={{ alignSelf: small ? 'center' : 'flex-end' }}
                         >Itt tudsz adományozni!</Button>
                     </Text>
                     <Image
+                        alt="Én"
                         src={require('@/assets/en.jpeg')}
-                        resizeMode="cover"
                         style={{
                             height: 200,
                             width: 200,

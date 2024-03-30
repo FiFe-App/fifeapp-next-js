@@ -11,22 +11,21 @@ const BasePage = ({
     noScroll = false,
     noFooter = false,
 }: any) => {
-    const { width, height } = useWindowSize()
+    const { width=0, height } = useWindowSize()
     const [innerHeight, setInnerHeight] = useState(height)
     const [outerHeight, setOuterHeight] = useState(height)
 
     return (
         <>
             <div
-                scrollEnabled={!noScroll}
-                onLayout={(e) => setOuterHeight(e.nativeEvent.layout.height)}
-                contentContainerStyle={{
+                style={{
                     display: 'flex',
                     flex: 1,
                     width: '100%',
                     alignItems: full ? 'stretch' : 'center',
+                    overflowY: !noScroll ? 'auto' : 'hidden',
+                    zIndex: -1
                 }}
-                style={{ zIndex: -1 }}
             >
                 <div
                     style={{
@@ -35,9 +34,6 @@ const BasePage = ({
                         maxWidth: full ? 'none' : 800,
                         ...style,
                     }}
-                    onLayout={(e) =>
-                        setInnerHeight(e.nativeEvent.layout.height)
-                    }
                 >
                     {children}
                 </div>

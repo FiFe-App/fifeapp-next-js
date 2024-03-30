@@ -9,6 +9,9 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@capacitor/android": "^5.7.4",
+        "@capacitor/core": "^5.7.4",
+        "@capacitor/ios": "^5.7.4",
         "@radix-ui/themes": "^3.0.1",
         "@reduxjs/toolkit": "^2.2.2",
         "axios": "^1.6.8",
@@ -23,6 +26,7 @@
         "styled-components": "^6.1.8"
     },
     "devDependencies": {
+        "@capacitor/cli": "^5.7.4",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",

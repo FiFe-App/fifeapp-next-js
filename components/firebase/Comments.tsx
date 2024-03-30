@@ -14,10 +14,9 @@ import Loading from '../Loading'
 import { ArrowRedoOutline } from 'react-ionicons'
 import UrlText from '../UrlText'
 import { Row } from '../Row'
-import { NewButton } from '../NewButton'
 import { Text } from '../Text'
 import router from 'next/router'
-import { Box, Flex } from '@radix-ui/themes'
+import { Box, Button, Flex } from '@radix-ui/themes'
 
 const Comments = ({
     style,
@@ -26,13 +25,13 @@ const Comments = ({
     limit,
     justComments,
     commentStyle,
-}) => {
-    const [list, setList] = useState([])
+}:any) => {
+    const [list, setList] = useState<Array<any>>([])
     const navigation = router
     const [width, setWidth] = useState(0)
 
-    const uid = useSelector((state) => state.user.uid)
-    const name = useSelector((state) => state.user.name)
+    const uid = useSelector((state:any) => state.user.uid)
+    const name = useSelector((state:any) => state.user.name)
     const [author, setAuthor] = useState(name)
     const [text, setText] = useState('')
     const [loading, setLoading] = useState(false)
@@ -66,7 +65,7 @@ const Comments = ({
             : ref(db, path)
 
         onChildAdded(q, (data) => {
-            setList((old) => [data.val(), ...old])
+            setList((old:any) => [data.val(), ...old])
             setDownloading(false)
         })
         setTimeout(() => {
@@ -83,7 +82,6 @@ const Comments = ({
     return (
         <Box
             style={{ flex: 1, ...style }}
-            onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
         >
             {!justComments && (
                 <>
@@ -98,7 +96,7 @@ const Comments = ({
                                         backgroundColor: '#ffffff',
                                     }}
                                     value={author}
-                                    onChangeText={setAuthor}
+                                    onChange={setAuthor}
                                     placeholder="Név"
                                 />
                             )}
@@ -110,28 +108,25 @@ const Comments = ({
                                     padding: 10,
                                     backgroundColor: '#ffffff',
                                 }}
-                                multiline
-                                rows={2}
+                                
+                                
                                 value={text}
-                                onChangeText={setText}
+                                onChange={(e)=>setText(e.target.value)}
                                 placeholder={
                                     placeholder ? placeholder : 'Kommented'
                                 }
                             />
                         </Box>
-                        <NewButton
-                            title={
-                                width > 300 ? (
-                                    'Küldés'
-                                ) : (
-                                    <ArrowRedoOutline size={30} color="black" />
-                                )
-                            }
-                            onPress={handleSend}
+                        <Button
+                            onClick={handleSend}
                             disabled={!author || !text}
                             style={{ height: '100%', margin: 0 }}
                             loading={loading}
-                        />
+                        >{width > 300 ? (
+                            'Küldés'
+                        ) : (
+                            <ArrowRedoOutline color="black" />
+                        )}</Button>
                     </Row>
                     <Text size={20} style={{ marginLeft: 10, marginTop: 10 }}>
                         Kommentek:
@@ -162,7 +157,7 @@ const Comments = ({
                                         if (comment?.uid)
                                             navigation.push({
                                                 pathname: 'profil',
-                                                params: { uid: comment.uid },
+                                                query: { uid: comment.uid },
                                             })
                                     }}
                                 >
