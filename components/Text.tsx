@@ -2,14 +2,14 @@ import { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
 interface Props {
-    title: boolean
-    size: number
-    contained: boolean
-    bold: boolean
-    light: boolean
-    selectable: boolean
-    children: ReactNode
-    style: Record<string, unknown>
+    title?: boolean
+    size?: number
+    contained?: boolean
+    bold?: boolean
+    light?: boolean
+    selectable?: boolean
+    children?: ReactNode
+    style?: Record<string, unknown>
 }
 
 export const Text: FC<Props> = ({

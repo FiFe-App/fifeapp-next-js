@@ -17,6 +17,7 @@ import { Row } from '../Row'
 import { NewButton } from '../NewButton'
 import { Text } from '../Text'
 import router from 'next/router'
+import { Box, Flex } from '@radix-ui/themes'
 
 const Comments = ({
     style,
@@ -76,15 +77,18 @@ const Comments = ({
         }
     }, [path])
 
+    console.log(list);
+    
+
     return (
-        <div
+        <Box
             style={{ flex: 1, ...style }}
             onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
         >
             {!justComments && (
                 <>
                     <Row style={{ flex: 1 }}>
-                        <div style={{ flexGrow: 1 }}>
+                        <Box style={{ flexGrow: 1 }}>
                             {!name && (
                                 <input
                                     style={{
@@ -114,7 +118,7 @@ const Comments = ({
                                     placeholder ? placeholder : 'Kommented'
                                 }
                             />
-                        </div>
+                        </Box>
                         <NewButton
                             title={
                                 width > 300 ? (
@@ -135,17 +139,15 @@ const Comments = ({
                 </>
             )}
             {!!list?.length && (
-                <div
-                    style={{
-                        flexWrap: 'wrap',
-                        flexDirection: 'row',
-                        margin: 10,
-                        marginRight: 15,
-                    }}
+                <Flex
+                    m="2"
+                    mr="3"
+                    wrap="wrap"
+                    direction="row"
                 >
                     {list.map((comment, ind) => {
                         return (
-                            <div
+                            <Box
                                 key={'comment' + ind}
                                 style={{
                                     background: 'white',
@@ -155,7 +157,7 @@ const Comments = ({
                                     ...commentStyle,
                                 }}
                             >
-                                <div
+                                <Box
                                     onClick={() => {
                                         if (comment?.uid)
                                             navigation.push({
@@ -167,13 +169,13 @@ const Comments = ({
                                     <Text>
                                         <b>{comment.author}</b>
                                     </Text>
-                                </div>
+                                </Box>
 
                                 <UrlText text={comment.text} />
-                            </div>
+                            </Box>
                         )
                     })}
-                </div>
+                </Flex>
             )}
             {downloading ? (
                 <Loading />
@@ -184,7 +186,7 @@ const Comments = ({
                     </Text>
                 )
             )}
-        </div>
+        </Box>
     )
 }
 

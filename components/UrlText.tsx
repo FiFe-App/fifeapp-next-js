@@ -34,6 +34,7 @@ const UrlText = ({ text = '', style }) => {
                 pre += end
             })
         list.push(<Text key={'e'}>{text.slice(pre, text.length)}</Text>)
+        setResult(list)
     }
     useEffect(() => {
         makeText()

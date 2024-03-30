@@ -1,19 +1,28 @@
 import { useWindowSize } from '@/lib/functions'
+import { FC, ReactNode } from 'react'
 
-export function Auto({
+interface Props {
+    children: ReactNode,
+    style: Record<string, unknown>,
+    flex: number|undefined,
+    breakPoint: number,
+    reverse: boolean,
+    onLayout: any,
+}
+
+export const Auto: FC<Props> = ({
     children,
     style,
     flex,
     breakPoint = 900,
     reverse,
     onLayout,
-}) {
-    const { width } = useWindowSize()
+}) => {
+    const { width=0 } = useWindowSize()
     console.log()
 
     return (
         <div
-            onLayout={onLayout}
             style={{
                 flexDirection: reverse
                     ? width > breakPoint

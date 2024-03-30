@@ -2,7 +2,6 @@
 
 import { Auto } from '@/components/Auto'
 import BasePage from '@/components/BasePage'
-import { NewButton } from '@/components/NewButton'
 import { Row } from '@/components/Row'
 import { Smiley } from '@/components/Smiley'
 import Image from 'next/image'
@@ -10,9 +9,9 @@ import router from 'next/router'
 import { useState } from 'react'
 import styles from '@/styles/aboutDesign'
 import ErrorBoundary from '@/components/ErrorHandling'
-import { Text } from '@/components/Text'
 import AuthoredImage from '@/components/AuthoredImage'
 import Comments from '@/components/firebase/Comments'
+import { Box, Button, Heading, Text } from '@radix-ui/themes'
 
 const About = () => {
     const small = false //useWindowDimensions().width <= 900;
@@ -45,22 +44,22 @@ const About = () => {
         //localStorage.setItem('login',true)
     }
     return (
-        <BasePage style={{ padding: 0, paddingHorizontal: 0 }} full>
-            <div
+        <Box >
+            <Box
                 style={{
                     marginLeft: small ? 0 : 100,
                     marginRight: small ? 0 : 100,
                 }}
             >
-                <div className="container">
+                <Box className="container">
                     <Row style={{ alignItems: 'center', textAlign: 'center' }}>
                         <Smiley style={{ margin: 32 }} />
-                        <div style={{ flex: 1 }}>
-                            <Text size={50}>FiFe App</Text>
-                            <Text size={30} style={{ marginTop: -8 }}>
+                        <Box style={{ flex: 1 }}>
+                            <Heading>FiFe App</Heading>
+                            <Heading size="3" style={{ marginTop: -4 }}>
                                 A biztonságos online tér
-                            </Text>
-                        </div>
+                            </Heading>
+                        </Box>
                     </Row>
                     <Text style={{ textAlign: 'left', fontSize: 17 }}>
                         {'\n'}A mai elszigetelt világban szükség van egy olyan
@@ -70,7 +69,7 @@ const About = () => {
                         <b>Fiatal Felnőttek applikációt</b>, amely sokrétű
                         online felületet nyújt a nagyvárosban élőknek.
                     </Text>
-                </div>
+                </Box>
                 <Auto
                     style={{
                         flex: undefined,
@@ -86,19 +85,16 @@ const About = () => {
                             order: small ? 3 : 0,
                         }}
                     >
-                        <Text title>Cserebere</Text>
+                        <Heading>Cserebere</Heading>
                         {'\n'}
                         Egy egyszerű adok-veszek oldal, ahol keresgélhetsz
                         illetve hirdethetsz eladó tárgyak, munkák, kiadó lakások
                         közt. Ezeket a cikkeket le tudod foglalni, és chatelni a
                         hirdetővel.
                         {'\n'}
-                        <div style={{ width: '100%', alignItems: 'center' }}>
-                            <NewButton
-                                title="Megyek csereberélni!"
-                                color="#fdcf99"
-                            />
-                        </div>
+                        <Box style={{ width: '100%', alignItems: 'center' }}>
+                            <Button>Megyek csereberélni!</Button>
+                        </Box>
                     </Text>
                     <AuthoredImage
                         authorName="Vitányi Regina"
@@ -113,10 +109,10 @@ const About = () => {
                         }}
                     />
                 </Auto>
-                <div style={{ alignItems: 'center', ...styles }}>
-                    <Text title>Bizniszelj!</Text>
+                <Box style={{ alignItems: 'center', ...styles }}>
+                    <Heading>Bizniszelj!</Heading>
                     <Auto style={{ flex: undefined, marginTop: 10 }}>
-                        <div
+                        <Box
                             style={{
                                 margin: 4,
                                 padding: 12,
@@ -132,8 +128,8 @@ const About = () => {
                                 Akár kézműves termékeket készítesz, korrepetálsz
                                 vagy tanácsot adsz, itt hirdetheted magad.
                             </Text>
-                        </div>
-                        <div
+                        </Box>
+                        <Box
                             style={{
                                 margin: 4,
                                 padding: 12,
@@ -148,8 +144,8 @@ const About = () => {
                                 Keress a szakemberek, művészek, alkotók közt!
                                 Fedezd fel a többiek bizniszeit!
                             </Text>
-                        </div>
-                        <div
+                        </Box>
+                        <Box
                             style={{
                                 margin: 4,
                                 padding: 12,
@@ -163,8 +159,8 @@ const About = () => {
                             <Text size={17}>
                                 Keressétek meg egymásban a kereslet és kínálatot
                             </Text>
-                        </div>
-                        <div
+                        </Box>
+                        <Box
                             style={{
                                 margin: 4,
                                 padding: 12,
@@ -179,10 +175,10 @@ const About = () => {
                                 Jelezz vissza, kik azok akik valódi segitséget
                                 tudnak nyújtani.
                             </Text>
-                        </div>
+                        </Box>
                     </Auto>
-                    <NewButton title="Irány Bizniszelni!" />
-                </div>
+                    <Button>Irány Bizniszelni!</Button>
+                </Box>
                 <Auto style={{ flex: undefined }}>
                     <Image
                         src={require('@/assets/logo.png')}
@@ -197,7 +193,7 @@ const About = () => {
                     />
 
                     <Text contained style={{ ...(small && { order: 3 }) }}>
-                        <Text title>Pajtások</Text>
+                        <Heading>Pajtások</Heading>
                         {'\n'}Az oldal biztonságát az úgynevezett
                         pajtásrendszerrel biztosítjuk. Pajtásodnak akkor
                         jelölhetsz valakit, ha megbízol az illetőben. Bizonyos
@@ -206,9 +202,9 @@ const About = () => {
                     </Text>
                 </Auto>
 
-                <div style={{}}>
+                <Box style={{}}>
                     <Text contained style={{ textAlign: 'center' }}>
-                        <Text title>Csatlakozz a FiFék közösségéhez!</Text>
+                        <Heading>Csatlakozz a FiFék közösségéhez!</Heading>
                         {'\n'}
                         <Text>Fifék így nyilatkoztak...</Text>
                         <Comments
@@ -225,10 +221,10 @@ const About = () => {
                             }}
                         />
                     </Text>
-                </div>
+                </Box>
                 <Auto style={{ flex: 'none' }}>
                     <Text contained>
-                        <Text title>Rólam</Text>
+                        <Heading>Rólam</Heading>
                         {'\n'}
                         Kristóf Ákos vagyok, én találtam ki és fejlesztem
                         egyedül a fife appot. Ez egy olyan projekt, amibe
@@ -238,14 +234,12 @@ const About = () => {
                         kérem a támogatásotokat. Ha neked is fontos a projekt
                         célja, és szívesen használnád az appot, kérlek egy pár
                         száz forinttal segítsd az elindulásunkat:){'\n'}
-                        <NewButton
-                            onPress={() => {
+                        <Button
+                            onClick={() => {
                                 Linking.openURL('https://patreon.com/fifeapp')
                             }}
-                            color="#fdcf99"
-                            title="Itt tudsz adományozni!"
                             style={{ alignSelf: small ? 'center' : 'flex-end' }}
-                        />
+                        >Itt tudsz adományozni!</Button>
                     </Text>
                     <Image
                         src={require('@/assets/en.jpeg')}
@@ -271,18 +265,16 @@ const About = () => {
                         padding: 12,
                     }}
                 >
-                    <NewButton
-                        title="Bejelentkezés"
-                        onPress={() => router.push('/bejelentkezes')}
-                    />
-                    <NewButton
-                        title="Regisztrálj!"
-                        color="#FDEEA2"
-                        onPress={() => router.push('/regisztracio')}
-                    />
+                    <Button
+                    
+                        onClick={() => router.push('/bejelentkezes')}
+                    >Bejelentkezés</Button>
+                    <Button
+                        onClick={() => router.push('/regisztracio')}
+                    >Regisztrálj!</Button>
                 </Row>
-            </div>
-        </BasePage>
+            </Box>
+        </Box>
     )
 }
 
