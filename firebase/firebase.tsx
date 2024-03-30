@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 // firebase.js
 // contains the Firebase context and provider
@@ -17,24 +17,28 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
-} from 'firebase/auth';
-import React, { createContext, useEffect, useState } from 'react';
-import firebaseConfig from './firebaseConfig';
+} from 'firebase/auth'
+import React, { PropsWithChildren, createContext, useEffect, useState } from 'react'
+import firebaseConfig from './firebaseConfig'
 
-import { getApp, initializeApp } from 'firebase/app';
-import { get, getDatabase, ref, set } from 'firebase/database';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeUnreadMessage, setName, setSettings, setUserData, login as sliceLogin, logout as sliceLogout } from '../lib/userReducer';
+import { getApp, initializeApp } from 'firebase/app'
+import { get, getDatabase, ref, set } from 'firebase/database'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    removeUnreadMessage,
+    setName,
+    setSettings,
+    setUserData,
+    login as sliceLogin,
+    logout as sliceLogout,
+} from '../lib/userReducer'
 
-import axios from 'axios';
-import { deleteToken, getMessaging, getToken } from 'firebase/messaging';
-import { config } from './authConfig';
+import axios from 'axios'
+import { deleteToken, getMessaging, getToken } from 'firebase/messaging'
+import { config } from './authConfig'
 
-import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
-import router from 'next/router';
-
-// we create a React Context, for this to be accessible
-// from a component later
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
+import router from 'next/router'
 
 const FirebaseContext = createContext(null)
 export { FirebaseContext };
@@ -96,10 +100,10 @@ const ctx = ({ children }) => {
         const messaging = getMessaging();
         const db = getDatabase()
         console.log('msg init'); 
-        
+
         try {
             if (!('Notification' in window)) return;
-            
+
             await Notification.requestPermission().then((permission) => {
                 console.log(permission);
             if (permission !== 'granted') {
@@ -186,7 +190,7 @@ const ctx = ({ children }) => {
         let newEmail = email
         let newPass = password
         let response = null
-        
+
         await getAuth().setPersistence(browserSessionPersistence).then(async ()=>{
 
             await signInWithEmailAndPassword(getAuth(getApp()), newEmail, newPass)
@@ -194,7 +198,7 @@ const ctx = ({ children }) => {
                 const user = userCredential.user
                 await user.getIdToken(false).then(token=>{
                     console.log(token);
-    
+
                     dispatch(setUserData({
                         authtoken:token,
                         email:user.email,
@@ -204,7 +208,7 @@ const ctx = ({ children }) => {
                         lastLoginAt:user.lastLoginAt
                     }))
                 })
-    
+
                 if (firstLogin) {
                     const user = getAuth(getApp()).currentUser;
                     console.log(user);
@@ -234,7 +238,7 @@ const ctx = ({ children }) => {
                 if (snapshot.exists()) {
                     dispatch(setSettings(snapshot.val()))
                 }
-                
+
                 })
                 const nameRef = ref(getDatabase(getApp()),'users/' + user.uid + '/data/name');
                 get(nameRef).then((snapshot) => {
@@ -242,7 +246,7 @@ const ctx = ({ children }) => {
                     dispatch(setName(snapshot.val()))
                     console.log(snapshot.val());
                 }
-                
+
                 })
             }
                 router.push('/')
@@ -252,7 +256,7 @@ const ctx = ({ children }) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.error(error);
-            
+
                 if (errorCode == 'auth/invalid-email' || errorCode == 'auth/user-not-found')
                     response = {error:'Bakfitty! Nem jó az email cím, amit megadtál!'};
                 else if (errorCode == 'auth/internal-error')

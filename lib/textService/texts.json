@@ -1,24 +1,50 @@
 {
     "web_title": ["légy közelebb"],
 
-    "search_text": ["Keress a fifén...","Keress a fife appon!"],
+    "search_text": ["Keress a fifén...", "Keress a fife appon!"],
 
-    "greeting_morning": ["Szép kávét, boldog napot!","Szia $!","Jó reggelt $!","Igyál sok vizet!"],
-    "greeting_normal": ["Szia $!","Legyen meg a napi jócselekedeted!","Segíts egy ismeretlennek!","Minden ember egyenlő!","Légy környezettudatos!","Menj el sétálni egyet!"],
-    "greeting_evening": ["Remélem jó napod volt!","Szia $!","Jó estét $!","Pihend ki magad!"],
+    "greeting_morning": [
+        "Szép kávét, boldog napot!",
+        "Szia $!",
+        "Jó reggelt $!",
+        "Igyál sok vizet!"
+    ],
+    "greeting_normal": [
+        "Szia $!",
+        "Legyen meg a napi jócselekedeted!",
+        "Segíts egy ismeretlennek!",
+        "Minden ember egyenlő!",
+        "Légy környezettudatos!",
+        "Menj el sétálni egyet!"
+    ],
+    "greeting_evening": [
+        "Remélem jó napod volt!",
+        "Szia $!",
+        "Jó estét $!",
+        "Pihend ki magad!"
+    ],
 
-    "no_result": ["A manóba! Nincs találat","Bakfitty! Nem találtunk semmit.","Hinnye! Próbáld meg más megfogalmazásban!","Azt a hét meg a nyolcát!"],
-    "sale": ["Cserebere","Adok-veszek"],
-    "buziness": ["Biznisz","Barter"],
+    "no_result": [
+        "A manóba! Nincs találat",
+        "Bakfitty! Nem találtunk semmit.",
+        "Hinnye! Próbáld meg más megfogalmazásban!",
+        "Azt a hét meg a nyolcát!"
+    ],
+    "sale": ["Cserebere", "Adok-veszek"],
+    "buziness": ["Biznisz", "Barter"],
     "docs": ["Cikkek"],
-    "buy_item": ["Megveszem","Kell nekem"],
-    "item_header": ["Új cserebere poszt létrehozása","Adj el, vagy vegyél valamit!","Hirdess!"],
-    "places": ["Térkép","Mi merre van","Hol vagyok"],
-    "profile": ["Profil","Én"],
-    "events": ["Programok","Progik"],
-    "help_needed": ["Egyedül nem merek elmenni","Valaki segítene eltévedni?"],
-    "messages": ["Üzeneteim","Dumcsi","Üzik"],
-    "logout": ["Kijelentkezés","Viszlát","Adios"],
-    "heart": ["Tetszik ez a hely","Jó a hely!","Ez a hely klafa"],
-    "open_maps": ["Útvonalterv","Vezess el ide!"]
+    "buy_item": ["Megveszem", "Kell nekem"],
+    "item_header": [
+        "Új cserebere poszt létrehozása",
+        "Adj el, vagy vegyél valamit!",
+        "Hirdess!"
+    ],
+    "places": ["Térkép", "Mi merre van", "Hol vagyok"],
+    "profile": ["Profil", "Én"],
+    "events": ["Programok", "Progik"],
+    "help_needed": ["Egyedül nem merek elmenni", "Valaki segítene eltévedni?"],
+    "messages": ["Üzeneteim", "Dumcsi", "Üzik"],
+    "logout": ["Kijelentkezés", "Viszlát", "Adios"],
+    "heart": ["Tetszik ez a hely", "Jó a hely!", "Ez a hely klafa"],
+    "open_maps": ["Útvonalterv", "Vezess el ide!"]
 }
