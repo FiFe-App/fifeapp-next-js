@@ -6,8 +6,8 @@
         'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
     --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 252, 243, 212;
-    --background-end-rgb: 252, 243, 212;
+    --background-start-rgb: rgb(252, 243, 212);
+    --background-end-rgb: rgb(252, 243, 212);
 
     --background-secondary: rgb(252, 249, 239);
 
@@ -40,6 +40,12 @@
     --callout-border-rgb: 172, 175, 176;
     --card-rgb: 180, 185, 188;
     --card-border-rgb: 131, 134, 135;
+}
+
+.radix-themes {
+
+    /*--color-background: rgb(252, 249, 239);*/
+    --color-background: rgb(252, 243, 212);
 }
 
 @media (prefers-color-scheme: dark) {

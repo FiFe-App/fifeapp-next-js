@@ -1,4 +1,4 @@
-const Loading = ({ color = '#ffde7e', style }) => {
+const Loading = ({ color = '#ffde7e', style }:any) => {
     return (
         <div
             style={{
