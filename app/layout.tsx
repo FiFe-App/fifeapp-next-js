@@ -1,5 +1,6 @@
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+import NextHead from 'next/head';
 import { Space_Mono } from 'next/font/google'
 import './globals.css'
 import '@radix-ui/themes/styles.css';
@@ -26,6 +27,8 @@ export default function RootLayout({
             <FirebaseProvider>
                   <html lang="en">
                       <body className={space_mono.className}>
+                      <Head />
+
                         <Theme scaling='90%' accentColor='amber'>
                           {children}
                         </Theme>
@@ -35,3 +38,31 @@ export default function RootLayout({
         </MyProvider>
     )
 }
+
+const Head = () => {
+    return <head>
+        <NextHead>
+            <meta
+                name="viewport"
+                content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+                />
+            <title>FiFe App</title>
+        </NextHead>
+    </head>
+}
+
+ 
+export const metadata: Metadata = {
+  title: 'FiFe App',
+}
+
+export const viewport: Viewport = {
+    viewportFit:'cover',
+    width:'device-width', 
+    initialScale:1,
+    minimumScale:1,
+    maximumScale:1,
+    userScalable:false
+    // Also supported by less commonly used
+    // interactiveWidget: 'resizes-visual',
+  }
