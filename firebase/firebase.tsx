@@ -4,6 +4,8 @@
 // contains the Firebase context and provider
 
 import {
+    AuthCredential,
+    EmailAuthProvider,
     FacebookAuthProvider,
     browserSessionPersistence,
     createUserWithEmailAndPassword,
@@ -11,6 +13,7 @@ import {
     getAuth,
     inMemoryPersistence,
     initializeAuth,
+    linkWithCredential,
     onAuthStateChanged,
     sendPasswordResetEmail,
     setPersistence,
@@ -38,13 +41,14 @@ import { deleteToken, getMessaging, getToken } from 'firebase/messaging'
 import { config } from './authConfig'
 
 import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
-import router from 'next/router'
+import {useRouter} from 'next/navigation'
 
 const FirebaseContext = createContext<any>(null)
 export { FirebaseContext };
 
 const Ctx = ({ children }:{children:ReactNode}) => {
     const dispatch = useDispatch()
+    const router = useRouter();
     const [messaging, setMessaging] = useState<any>(null);
     const uid = useSelector((state:any) => state.user.uid);
 
@@ -144,7 +148,6 @@ const Ctx = ({ children }:{children:ReactNode}) => {
 
     const appCheck = () => {
 
-        return;
         // Pass your reCAPTCHA v3 site key (public key) to activate(). Make sure this
         // key is the counterpart to the secret key you set in the Firebase console.
         try{const appCheckObj = initializeAppCheck(getApp(), {
@@ -191,7 +194,8 @@ const Ctx = ({ children }:{children:ReactNode}) => {
         let newPass = password
         let response = null
 
-        await getAuth().setPersistence(browserSessionPersistence).then(async ()=>{
+        console.log(getApp().name);
+      
 
             await signInWithEmailAndPassword(getAuth(getApp()), newEmail, newPass)
             .then(async (userCredential) => {
@@ -268,7 +272,6 @@ const Ctx = ({ children }:{children:ReactNode}) => {
                 else
                     response = {error:'error: ' + errorCode + ' - ' + errorMessage};
             });
-        })
 
         return response
 
@@ -310,57 +313,56 @@ const Ctx = ({ children }:{children:ReactNode}) => {
         let response = null
         auth.languageCode = 'hu';
         console.log('fb-login');
-        const provider = new FacebookAuthProvider();
-        await signInWithPopup(auth, provider)
-            .then((result) => {
-                // The signed-in user info.
-                const user = result.user;
-                dispatch(sliceLogin(result.user.uid))
+        let email;
+        // Step 1: User tries to sign in using Facebook.
+        let result = await signInWithPopup(getAuth(), new FacebookAuthProvider()).then(res=>{
+            console.log('facebook login success');
+        }).catch(async error=>{
 
-                response = {success:true}
-
-                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                const credential = FacebookAuthProvider.credentialFromResult(result);
-                const accessToken = credential?.accessToken;
-
-                // ...
-            })
-            .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                //const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = FacebookAuthProvider.credentialFromError(error);
-                response = {error:'error: ' + errorCode + ' - ' + errorMessage};
-                if (errorCode === 'auth/account-exists-with-different-credential') {
-                    var pendingCred = error.credential;
-                    var email = error.email;
-                    // Get sign-in methods for this email.
-                    fetchSignInMethodsForEmail(auth,email).then(function(methods) {
-                      // Step 3.
-                      // If the user has several sign-in methods,
-                      // the first method in the list will be the "recommended" method to use.
-                      if (methods[0] === 'password') {
-                        // Asks the user their password.
-                        // In real scenario, you should handle this asynchronously.
-                        var password = 'password'//promptUserForPassword(); // TODO: implement promptUserForPassword.
-                        signInWithEmailAndPassword(auth,email, password).then(function(result) {
-                          // Step 4a.
-                          //return result.user.linkWithCredential(pendingCred);
-                        }).then(function() {
-                          // Facebook account successfully linked to the existing Firebase user.
-                          response = {success:true}
-                        });
-                        return;
-                      }
-                      response = {error:'facebook login error'}
+            // Step 2: User's email already exists.
+            if (error.code === "auth/account-exists-with-different-credential") {
+                // The pending Facebook credential.
+                const credential = FacebookAuthProvider.credentialFromResult(
+                    error.customData
+                ) as AuthCredential;
+                console.log('pendingCred',credential);
+                
+                // Step 3: Save the pending credential in temporary storage,
+                email = error.customData.email
+                const methods = await fetchSignInMethodsForEmail(getAuth(),email);
+                console.log('methods',methods);
+                
+                try {
+                    // Step 5: Sign the user in using their chosen method.
+                    const result = await signInWithEmailAndPassword(getAuth(),email,'');
+                
+                    // Step 6: Link to the Facebook credential.
+                    // TODO: implement `retrievePendingCred` for your app.
+                    console.log('result',result);
+                    
+                    await linkWithCredential(result.user, credential).then(res=>{
+                        console.log('link success',res);
+                        
+                    }).catch(err=>{
+                        console.log('link error',err);
+                        
                     });
-                  }
+                
+                    // Step 7: Continue to app.
+                } catch (error) {
+                    // ...
+                    console.log(error);
+                    
+                }
+                
+            
+                // Step 4: Let the user know that they already have an account
+                // but with a different provider, and let them choose another
+                // sign-in method.
+            }
 
-                // ...
-            });
+        });
+          
         return response;
     }
 
