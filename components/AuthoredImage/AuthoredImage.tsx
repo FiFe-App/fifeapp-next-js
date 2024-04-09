@@ -22,7 +22,7 @@ const AuthoredImage: FC<Props> = (props:Props) => {
 
     const handlePress = () => {
         if (authorUid && uid)
-            navigation.push( 'profil', { query:{uid: authorUid} })
+            navigation.push( 'profil?uid="'+authorUid+'"')
     }
     return (
         <div
