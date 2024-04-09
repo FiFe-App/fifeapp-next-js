@@ -1,4 +1,12 @@
-export const categories = {
+interface categoriesType {
+    [key:string]: Array<{
+        name: string,
+        color?: string,
+        key?: number
+    }>
+}
+
+export const categories:categoriesType = {
     sale: [
         { name: 'Tárgyakat keresek', color: '#cfc' }, //0
         { name: 'Tárgyakat kínálok', color: '#cfc' }, //1
