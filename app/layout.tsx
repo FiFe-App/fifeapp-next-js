@@ -1,19 +1,20 @@
 
-import type { Metadata, Viewport } from 'next'
-import NextHead from 'next/head';
-import { Space_Mono } from 'next/font/google'
-import './globals.css'
+import MyProvider from '@/lib/myProvider';
+import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
-import BasePage from '@/components/BasePage'
-import Error from 'next/error'
-import { persistor, store } from '../lib/store'
-import FirebaseProvider, { FirebaseContext } from '../firebase/firebase'
-import { Theme, ThemePanel } from '@radix-ui/themes'
-import MyProvider from '@/lib/myProvider'
-import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
-import { useWindowSize } from '@/lib/functions';
+import type { Metadata, Viewport } from 'next';
+import { Space_Mono } from 'next/font/google';
+import NextHead from 'next/head';
+import FirebaseProvider from '../firebase/firebase';
+import './globals.css';
+import Footer from '@/components/Footer';
 
-const space_mono = Space_Mono({ subsets: ['latin'], weight: '400' })
+const space_mono = Space_Mono({
+    subsets: ['latin'],
+    weight: '400',
+    variable: '--font-mono',
+    display:'swap'
+})
 
 export default function RootLayout({
     children,
@@ -25,14 +26,14 @@ export default function RootLayout({
     return (
         <MyProvider>
             <FirebaseProvider>
-                  <html lang="en">
-                      <body className={space_mono.className}>
-                      <Head />
-
+                  <html lang="en" className={space_mono.className}>
+                    <Head />
+                    <body >
                         <Theme scaling='90%' accentColor='amber'>
                           {children}
                         </Theme>
-                        </body>
+                    </body>
+                    <Footer />
                   </html>
             </FirebaseProvider>
         </MyProvider>
@@ -46,6 +47,7 @@ const Head = () => {
                 name="viewport"
                 content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
                 />
+                <link rel="icon" href="/favicon.ico" sizes="any" />
             <title>FiFe App</title>
         </NextHead>
     </head>

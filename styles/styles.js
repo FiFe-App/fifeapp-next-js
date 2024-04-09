@@ -1,6 +1,5 @@
-import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+export const styles = {
     p1: {
         padding: 4,
     },
@@ -78,17 +77,6 @@ export const styles = StyleSheet.create({
         backgroundColor: 'yellow',
         color: 'black',
     },
-    searchInput: {
-        textAlign: 'center',
-        width: '100%',
-        margin: 5,
-        borderColor: 'black',
-        borderRadius: 8,
-        backgroundColor: '#ffffff',
-        padding: 10,
-        fontSize: 17,
-        fontWeight: '500',
-    },
     searchList: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -164,4 +152,4 @@ export const styles = StyleSheet.create({
         margin: 6,
         borderRadius: 8,
     },
-})
+}

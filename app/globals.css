@@ -46,6 +46,8 @@
 
     /*--color-background: rgb(252, 249, 239);*/
     --color-background: rgb(252, 243, 212);
+    --default-font-family: var(--font-mono);
+    
 }
 
 @media (prefers-color-scheme: dark) {
@@ -121,6 +123,33 @@ img {
 a {
     color: inherit;
     text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.auto {
+    flex-direction: row;
+    display: flex;
+}
+.auto.reverse {
+    flex-direction: column;
+}
+.flex-on-small {
+    flex-grow:1;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .auto {
+        flex-direction: column;
+    }
+    .auto.reverse {
+        flex-direction: row;
+    }
+    .flex-on-small {
+        flex-grow:0;
+    }
 }
 
 .container {

@@ -6,18 +6,20 @@ import BasePage from '@/components/BasePage'
 import { Row } from '@/components/Row'
 import { Smiley } from '@/components/Smiley'
 import Image from 'next/image'
-import router from 'next/router'
 import { useState } from 'react'
-import AuthoredImage from '@/components/AuthoredImage'
+import AuthoredImage from '@/components/AuthoredImage/AuthoredImage'
 import Comments from '@/components/firebase/Comments'
 import { Box, Button, Container, Heading, Text } from '@radix-ui/themes'
 import { getDatabase, push, ref, set } from 'firebase/database'
-import { useWindowSize } from '@/lib/functions'
+import { useSmallerThan, useWindowSize } from '@/lib/functions'
+import { useRouter } from 'next/navigation'
 
 const About = () => {
-    const small = useWindowSize().width <= 900;
+    const width = useWindowSize().width;
+    const small = width<900;
+    
     const db = getDatabase()
-    const navigation = router
+    const router = useRouter()
     const [email, setEmail] = useState('')
     const [sent, setSent] = useState(false)
 
@@ -41,9 +43,10 @@ const About = () => {
 
     const next = () => {
         console.log('next')
-        navigation.push('/')
+        router.push('/')
         //localStorage.setItem('login',true)
     }
+    if (width!=undefined)
     return (
         <Box>
             <Container size="3">
@@ -74,11 +77,10 @@ const About = () => {
                     }}
                 >
                     <Text
-                        className={styles.container}
+                        className={[styles.container, styles.last_on_small].join(' ')}
                         style={{
                             flexGrow: 1,
-                            marginBottom: 20,
-                            order: small ? 3 : 0,
+                            marginBottom: 20
                         }}
                     >
                         <Heading>Cserebere</Heading>
@@ -93,9 +95,8 @@ const About = () => {
                         </Box>
                     </Text>
                     <AuthoredImage
-                        authorName="Vitányi Regina"
+                        authorname="Vitányi Regina"
                         src={require('@/assets/img-prof.jpg')}
-                        resizeMode="contain"
                         style={{
                             height: 200,
                             width: 200,
@@ -187,7 +188,7 @@ const About = () => {
                             alignSelf: 'center',
                         }}
                     />
-                    <Text style={small ? { order: 3 }: {}}>
+                    <Text className={styles.last_on_small}>
                         <Heading>Pajtások</Heading>
                         {'\n'}Az oldal biztonságát az úgynevezett
                         pajtásrendszerrel biztosítjuk. Pajtásodnak akkor
@@ -261,10 +262,12 @@ const About = () => {
                     }}
                 >
                     <Button
+                        m='1'
                         variant='soft'
                         onClick={() => router.push('/bejelentkezes')}
                     >Bejelentkezés</Button>
                     <Button
+                        m='1'
                         onClick={() => router.push('/regisztracio')}
                     >Regisztrálj!</Button>
                 </Row>
