@@ -31,7 +31,6 @@ export const Text: FC<Props> = ({
             {...props}
             className={classes}
             style={{
-                ...{ letterSpacing: -1 },
                 ...(title && {
                     fontSize: 22,
                     marginTop: 14,

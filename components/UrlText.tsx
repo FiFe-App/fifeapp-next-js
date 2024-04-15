@@ -2,18 +2,18 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Text } from './Text'
 
-const UrlText = ({ text = '', style }) => {
+const UrlText = ({ text = '', style }:any) => {
     const regex =
         /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/g
     const arr = text.match(regex)
 
-    const [result, setResult] = useState(null)
+    const [result, setResult] = useState<Array<any>|null>(null)
     const makeText = () => {
         let list = []
         let pre = 0
 
         if (arr?.length)
-            arr.map((link, ind) => {
+            arr.map((link:any, ind:any) => {
                 console.log('link', link)
                 const start = text.indexOf(link)
                 const end = start + link?.length

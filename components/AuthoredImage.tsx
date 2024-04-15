@@ -4,16 +4,16 @@ import Image from 'next/image'
 import { Text } from './Text'
 import router from 'next/router'
 
-const AuthoredImage = (props) => {
+const AuthoredImage = (props:any) => {
     const ref = useRef(null)
     const navigation = router
     const { authorUid, authorName } = props
-    const uid = useSelector((state) => state.user.uid)
+    const uid = useSelector((state:any) => state.user.uid)
     const [hovered, setHovered] = useState(false)
 
     const handlePress = () => {
         if (authorUid && uid)
-            navigation.push({ pathname: 'profil', params: { uid: authorUid } })
+            navigation.push( 'profil', { query:{uid: authorUid} })
     }
     return (
         <div
@@ -21,7 +21,7 @@ const AuthoredImage = (props) => {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <Image {...props} />
+            <Image {...props} alt=""/>
             {hovered && (
                 <div
                     onClick={handlePress}

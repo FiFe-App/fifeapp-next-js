@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export const Smiley = ({ style }) => {
+export const Smiley = ({ style,...props }:any) => {
     const size = 0
 
     const handleGrow = () => {
@@ -14,9 +14,11 @@ export const Smiley = ({ style }) => {
                 transformOrigin: '50% 30%',
                 ...style,
             }}
+            {...props}
         >
             <div onClick={handleGrow}>
                 <Image
+                    alt=''
                     src={require('@/assets/logo.png')}
                     style={{ width: 50, height: 50, zIndex: 10 }}
                 />

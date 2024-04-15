@@ -18,7 +18,7 @@ import {
     signInWithPopup,
     signOut,
 } from 'firebase/auth'
-import React, { PropsWithChildren, createContext, useEffect, useState } from 'react'
+import React, { PropsWithChildren, ReactNode, createContext, useEffect, useState } from 'react'
 import firebaseConfig from './firebaseConfig'
 
 import { getApp, initializeApp } from 'firebase/app'
@@ -40,13 +40,13 @@ import { config } from './authConfig'
 import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
 import router from 'next/router'
 
-const FirebaseContext = createContext(null)
+const FirebaseContext = createContext<any>(null)
 export { FirebaseContext };
 
-const ctx = ({ children }) => {
+const Ctx = ({ children }:{children:ReactNode}) => {
     const dispatch = useDispatch()
-    const [messaging, setMessaging] = useState(null);
-    const uid = useSelector((state) => state.user.uid);
+    const [messaging, setMessaging] = useState<any>(null);
+    const uid = useSelector((state:any) => state.user.uid);
 
     const app = () => {
         let app;
@@ -158,7 +158,7 @@ const ctx = ({ children }) => {
         }
     }
 
-    const forgotPassword = async (email) => {
+    const forgotPassword = async (email:string) => {
         const retApp = getApp()
         const a = getAuth(retApp)
         if (!email || email == '') return 'Email nélkül nem tudjuk visszaállítani a jelszavad'
@@ -186,7 +186,7 @@ const ctx = ({ children }) => {
         }
     }
 //init()
-    const login = async (email, password, firstLogin) => {
+    const login = async (email:string, password:string, firstLogin:any) => {
         let newEmail = email
         let newPass = password
         let response = null
@@ -204,8 +204,8 @@ const ctx = ({ children }) => {
                         email:user.email,
                         emailVerified:user.emailVerified,
                         providerData:user.providerData,
-                        createdAt:user.createdAt,
-                        lastLoginAt:user.lastLoginAt
+                        createdAt:user.metadata.creationTime,
+                        lastLoginAt:user.metadata.creationTime
                     }))
                 })
 
@@ -274,7 +274,7 @@ const ctx = ({ children }) => {
 
     }
 
-    const register = async (email,password,data) => {
+    const register = async (email:string,password:string,data:any) => {
         let response = null
         const auth = getAuth();
         console.log('register',data);
@@ -321,7 +321,7 @@ const ctx = ({ children }) => {
 
                 // This gives you a Facebook Access Token. You can use it to access the Facebook API.
                 const credential = FacebookAuthProvider.credentialFromResult(result);
-                const accessToken = credential.accessToken;
+                const accessToken = credential?.accessToken;
 
                 // ...
             })
@@ -346,9 +346,9 @@ const ctx = ({ children }) => {
                         // Asks the user their password.
                         // In real scenario, you should handle this asynchronously.
                         var password = 'password'//promptUserForPassword(); // TODO: implement promptUserForPassword.
-                        auth.signInWithEmailAndPassword(email, password).then(function(result) {
+                        signInWithEmailAndPassword(auth,email, password).then(function(result) {
                           // Step 4a.
-                          return result.user.linkWithCredential(pendingCred);
+                          //return result.user.linkWithCredential(pendingCred);
                         }).then(function() {
                           // Facebook account successfully linked to the existing Firebase user.
                           response = {success:true}
@@ -380,4 +380,4 @@ const ctx = ({ children }) => {
 
 }
 
-export default ctx;
+export default Ctx;
