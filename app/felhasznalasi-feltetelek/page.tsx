@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { Box, p } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 
 const TermsAndServices = () => {
     return (<Box>
