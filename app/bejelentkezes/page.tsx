@@ -2,17 +2,16 @@
 
 import { FirebaseContext } from "@/firebase/firebase";
 import { useWindowSize } from "@/lib/functions";
-import { Flex, Button, Text, TextField, Box, Spinner, Heading, ChevronDownIcon } from "@radix-ui/themes";
 import * as Label from '@radix-ui/react-label';
-import Head from "next/head";
+import { Box, Button, ChevronDownIcon, Flex, Heading, Text, TextField } from "@radix-ui/themes";
 import { useParams, useRouter } from "next/navigation";
-import {  } from 'next/router'
-import { useContext, useEffect, useState } from "react";
+import { } from 'next/router';
+import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { LogoFacebook } from "react-ionicons";
 import { useSelector } from "react-redux";
 
-import styles from './page_style.module.css';
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import styles from './page_style.module.css';
 
 const Page = () => {
     const { width, height } = useWindowSize();
@@ -110,9 +109,12 @@ const  LoginForm = () => {
     setEmail('');
   }, [isForgot]);
 
-  const sendForgot = async () => {
-    const res = await context.api.forgotPassword(email);
-    setLoginError(res)
+  const sendForgot = (e:SyntheticEvent) => {
+    e
+    context.api.forgotPassword(email).then((res:any)=>{
+      setLoginError(res)
+    });
+    
   }
 
   return (
@@ -123,7 +125,7 @@ const  LoginForm = () => {
               style={{width: '100%'}} onClick={(e)=>{
                 e.preventDefault();
                 context.api.facebookLogin()
-              }}><LogoFacebook color='white'/> Facebook bejelentkezés</Button>
+              }}><LogoFacebook style={{fill:'white'}}/> Facebook bejelentkezés</Button>
             <TextField.Root
               size='3'
               className={styles.input_field}
@@ -131,6 +133,7 @@ const  LoginForm = () => {
               onChange={(e)=>setEmail(e.target.value)}
               placeholder="Email-cím"
               inputMode='email'
+              autoComplete='email'
             />
             <TextField.Root
               size='3'
@@ -139,6 +142,7 @@ const  LoginForm = () => {
               style={{width: '100%'}}
               onChange={(e)=>setPassword(e.target.value)}
               placeholder="Jelszó"
+              autoComplete='password'
             />
           <Button style={{backgroundColor:'#fdcf99',justifyContent:'center',alignItems:'center',margin:5,padding:10,borderRadius:8,width:'100%'}}
             onClick={() => signIn(email, password)} loading={loading} type="submit">
@@ -165,9 +169,10 @@ const  LoginForm = () => {
               style={{width:  '100%'}}
               placeholder="Email-cím"
               inputMode='email'
+              autoComplete="email"
             />
           <Button style={{backgroundColor:'#fdcf99',justifyContent:'center',alignItems:'center',margin:5,padding:10,borderRadius:8,width:'100%'}}
-            onClick={() => signIn(email, password)} loading={loading} type="submit">
+            loading={loading} type="submit">
             <Text size='3'>Email küldése!</Text>
           </Button>
         </Flex>
