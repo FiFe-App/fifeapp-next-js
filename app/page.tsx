@@ -1,10 +1,8 @@
 'use client'
 
-import styles from './page_style.module.css'
+import styles from './page.module.css'
 import { Auto } from '@/components/Auto'
-import BasePage from '@/components/BasePage'
 import { Row } from '@/components/Row'
-import { Smiley } from '@/components/Smiley'
 import Image from 'next/image'
 import router from 'next/router'
 import { useState } from 'react'
@@ -13,9 +11,10 @@ import Comments from '@/components/firebase/Comments'
 import { Box, Button, Container, Heading, Text } from '@radix-ui/themes'
 import { getDatabase, push, ref, set } from 'firebase/database'
 import { useWindowSize } from '@/lib/functions'
+import { Header } from '@/components'
 
 const About = () => {
-    const small = useWindowSize().width <= 900;
+    const small = useWindowSize().width <= 900
     const db = getDatabase()
     const navigation = router
     const [email, setEmail] = useState('')
@@ -47,16 +46,8 @@ const About = () => {
     return (
         <Box>
             <Container size="3">
+                <Header></Header>
                 <Box className="container">
-                    <Row style={{ alignItems: 'center', textAlign: 'center' }}>
-                        <Smiley className={styles.smiley} />
-                        <Box style={{ flex: 1 }}>
-                            <Heading>FiFe App</Heading>
-                            <Heading size="3" style={{ marginTop: -4 }}>
-                                A biztonságos online tér
-                            </Heading>
-                        </Box>
-                    </Row>
                     <Text style={{ textAlign: 'left', fontSize: 17 }}>
                         {'\n'}A mai elszigetelt világban szükség van egy olyan
                         rendszerre, amely összehozza a jóérzésű embereket egy
@@ -105,7 +96,10 @@ const About = () => {
                         }}
                     />
                 </Auto>
-                <Box className={styles.container} style={{ alignItems: 'center' }}>
+                <Box
+                    className={styles.container}
+                    style={{ alignItems: 'center' }}
+                >
                     <Heading>Bizniszelj!</Heading>
                     <Auto style={{ flex: undefined, marginTop: 10 }}>
                         <Box
@@ -116,9 +110,7 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Heading size="2">
-                                1. Mihez értesz?
-                            </Heading>
+                            <Heading size="2">1. Mihez értesz?</Heading>
                             <Text size="2">
                                 Oszd meg másokkal, hogy miben vagy tehetséges!
                                 Akár kézműves termékeket készítesz, korrepetálsz
@@ -133,9 +125,7 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Heading size="2">
-                                2. Lépj kapcsolatba!
-                            </Heading>
+                            <Heading size="2">2. Lépj kapcsolatba!</Heading>
                             <Text size="2">
                                 Keress a szakemberek, művészek, alkotók közt!
                                 Fedezd fel a többiek bizniszeit!
@@ -164,16 +154,14 @@ const About = () => {
                                 flex: small ? undefined : 1,
                             }}
                         >
-                            <Heading size="2" >
-                                4. Ajánlj be másokat!
-                            </Heading>
+                            <Heading size="2">4. Ajánlj be másokat!</Heading>
                             <Text size="2">
                                 Jelezz vissza, kik azok akik valódi segitséget
                                 tudnak nyújtani.
                             </Text>
                         </Box>
                     </Auto>
-                    <Button variant='soft'>Irány Bizniszelni!</Button>
+                    <Button variant="soft">Irány Bizniszelni!</Button>
                 </Box>
                 <Auto style={{ flex: undefined }}>
                     <Image
@@ -187,7 +175,7 @@ const About = () => {
                             alignSelf: 'center',
                         }}
                     />
-                    <Text style={small ? { order: 3 }: {}}>
+                    <Text style={small ? { order: 3 } : {}}>
                         <Heading>Pajtások</Heading>
                         {'\n'}Az oldal biztonságát az úgynevezett
                         pajtásrendszerrel biztosítjuk. Pajtásodnak akkor
@@ -229,12 +217,14 @@ const About = () => {
                         célja, és szívesen használnád az appot, kérlek egy pár
                         száz forinttal segítsd az elindulásunkat:){'\n'}
                         <Button
-                            variant='soft'
+                            variant="soft"
                             onClick={() => {
-                                location.replace('https://patreon.com/fifeapp');
+                                location.replace('https://patreon.com/fifeapp')
                             }}
                             style={{ alignSelf: small ? 'center' : 'flex-end' }}
-                        >Itt tudsz adományozni!</Button>
+                        >
+                            Itt tudsz adományozni!
+                        </Button>
                     </Text>
                     <Image
                         alt="Én"
@@ -261,12 +251,14 @@ const About = () => {
                     }}
                 >
                     <Button
-                        variant='soft'
+                        variant="soft"
                         onClick={() => router.push('/bejelentkezes')}
-                    >Bejelentkezés</Button>
-                    <Button
-                        onClick={() => router.push('/regisztracio')}
-                    >Regisztrálj!</Button>
+                    >
+                        Bejelentkezés
+                    </Button>
+                    <Button onClick={() => router.push('/regisztracio')}>
+                        Regisztrálj!
+                    </Button>
                 </Row>
             </Container>
         </Box>
