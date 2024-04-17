@@ -40,24 +40,18 @@ const Page = () => {
       return (
         <Flex style={containerStyle}>
           
-        <Button onClick={()=>router.push('/')} style={{padding:10,alignSelf:'flex-start'}} variant='ghost' >
-            <><ChevronLeftIcon />Rólunk</>
-        </Button>
+          <Button onClick={()=>router.push('/')} style={{padding:10,alignSelf:'flex-start'}} variant='ghost' >
+              <><ChevronLeftIcon />Rólunk</>
+          </Button>
           
-        <Flex style={{backgroundColor:'rgb(253, 249, 229)',borderRadius:50,padding:small?30:50,paddingTop:0,margin:5,marginTop:20,maxWidth:'95%',alignItems:'center'}}>
-            {width >= 900 ?
-              <Text style={{fontSize:170,color:'black'}}>
-              FiFe app
-            </Text>
-            :
-            <Text style={{fontSize:70, color:'black',textAlign:'center',flex:1}}>
-              FiFe app
-            </Text>
-            }
-            <Flex direction="row" style={{paddingLeft:small?0:30,paddingRight:small?0:30,textAlign:'center',alignItems:'center'}}>      
-              <Text style={{fontSize:small?17:40}}><b>légy közelebb</b></Text>
-            </Flex>
-            <LoginForm/>
+          <Flex className={styles.container}>
+                <Text className={styles.title}>
+                FiFe app
+              </Text>
+              <Flex direction="row" style={{textAlign:'center',alignItems:'center'}}>      
+                <Text className={styles.subTitle}><b>légy közelebb</b></Text>
+              </Flex>
+              <LoginForm/>
             
           </Flex>
           <Flex style={{alignItems:'flex-end', justifyContent:'flex-end',margin:10,flex:1,zIndex:1}} >
@@ -156,9 +150,9 @@ const  LoginForm = () => {
 
       <Flex style={{flexDirection:'column',flexGrow:1,width:'100%',alignItems:'center'}}>
             <Button variant="ghost" onClick={()=>setIsForgot(false)} style={{padding:10,borderRadius:8,marginBottom:16,alignSelf:'flex-start'}} >
-              <ChevronLeftIcon/> Vissza
+              <ChevronLeftIcon/> Bejelentkezés
             </Button>
-            <Heading>Elfelejtettem a jelszavam.</Heading>
+            <Heading>Elfelejtetted a jelszavad?</Heading>
             <Text>Semmi gond mindenkivel előfordul:)</Text>
             <Label.Root htmlFor="forgotPass">Milyen emaillel regisztráltál be?</Label.Root>
             <TextField.Root
