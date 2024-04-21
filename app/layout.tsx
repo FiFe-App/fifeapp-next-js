@@ -6,7 +6,7 @@ import type { Metadata, Viewport } from 'next';
 import { Space_Mono } from 'next/font/google';
 import NextHead from 'next/head';
 import FirebaseProvider from '../firebase/firebase';
-import './globals.css';
+import '@/css/layout.css'
 import Footer from '@/components/Footer';
 
 const space_mono = Space_Mono({
@@ -21,8 +21,6 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-
-
     return (
         <MyProvider>
             <FirebaseProvider>

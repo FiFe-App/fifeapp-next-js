@@ -14,16 +14,7 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import styles from './page_style.module.css';
 
 const Page = () => {
-    const { width, height } = useWindowSize();
     const router = useRouter();
-    const small = useWindowSize().width<900;
-    const segments = useParams();
-    const [canLogin, setCanLogin] = useState(segments || false);
-    const [showLogin, setShowLogin] = useState(false);
-    const [showRegister, setShowRegister] = useState(false);
-    const {app, auth, user, api}  = useContext(FirebaseContext);
-    const [scrollBox, setScrollBox] = useState<HTMLElement|null>(null);
-  
     
     const containerStyle= {
       alignItems:'center',
@@ -33,8 +24,7 @@ const Page = () => {
   
       const handleMoreInfo = () => {
         console.log('more');
-        if (width <= 900)
-          router.push('regisztracio')
+        router.push('regisztracio')
       }
     
       return (
@@ -68,9 +58,6 @@ const Page = () => {
       );
 }
 const  LoginForm = () => {
-  const { width } = useWindowSize();
-  const small = width<900;
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -104,7 +91,6 @@ const  LoginForm = () => {
   }, [isForgot]);
 
   const sendForgot = (e:SyntheticEvent) => {
-    e
     context.api.forgotPassword(email).then((res:any)=>{
       setLoginError(res)
     });
@@ -171,7 +157,7 @@ const  LoginForm = () => {
           </Button>
         </Flex>
       </form> }
-      {!!loginError && <Box style={{maxWidth:small?400:600}} className={styles.error}>
+      {!!loginError && <Box style={{maxWidth:400}} className={styles.error}>
         <Text style={{fontSize:17}} >{loginError}</Text>
       </Box>}
     </Box>
