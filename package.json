@@ -12,6 +12,7 @@
         "@capacitor/android": "^5.7.4",
         "@capacitor/core": "^5.7.4",
         "@capacitor/ios": "^5.7.4",
+        "@netlify/plugin-nextjs": "^5.1.0",
         "@radix-ui/themes": "^3.0.1",
         "@reduxjs/toolkit": "^2.2.2",
         "axios": "^1.6.8",
@@ -23,6 +24,7 @@
         "react-ionicons": "^4.2.1",
         "react-redux": "^9.1.0",
         "redux-persist": "^6.0.0",
+        "sharp": "^0.33.3",
         "styled-components": "^6.1.8"
     },
     "devDependencies": {

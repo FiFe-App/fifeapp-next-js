@@ -4,6 +4,7 @@ import { FC, ReactNode } from 'react'
 interface Props {
     children?: ReactNode,
     style?: Record<string, unknown>,
+    className?: string,
     flex?: number|undefined,
     breakPoint?: number,
     reverse?: boolean,
@@ -17,6 +18,7 @@ export const Auto: FC<Props> = ({
     breakPoint = 900,
     reverse,
     onLayout,
+    className
 }) => {
     const { width=0 } = useWindowSize()
     console.log()
@@ -42,6 +44,7 @@ export const Auto: FC<Props> = ({
                           : 1,
                 ...style,
             }}
+            className={className}
         >
             {children}
         </div>
