@@ -1,6 +1,6 @@
 
 import MyProvider from '@/lib/myProvider';
-import { Theme } from '@radix-ui/themes';
+import { Theme, Box, Container } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import type { Metadata, Viewport } from 'next';
 import { Space_Mono } from 'next/font/google';
@@ -8,6 +8,8 @@ import NextHead from 'next/head';
 import FirebaseProvider from '../firebase/firebase';
 import '@/css/layout.css'
 import Footer from '@/components/Footer';
+import '@/css/layout.css'
+import { Header } from '@/components'
 
 const space_mono = Space_Mono({
     subsets: ['latin'],
@@ -24,11 +26,15 @@ export default function RootLayout({
     return (
         <MyProvider>
             <FirebaseProvider>
-                  <html lang="en" className={space_mono.className}>
-                    <Head />
-                    <body >
-                        <Theme scaling='90%' accentColor='amber'>
-                          {children}
+                <html lang="en">
+                    <body>
+                        <Theme scaling="90%" accentColor="amber">
+                            <Box>
+                                <Container size="3">
+                                    <Header/>
+                                </Container>
+                            </Box>
+                            {children}
                         </Theme>
                     </body>
                     <Footer />

@@ -1,0 +1,9 @@
+[build]
+  command = "yarn build"
+  publish = ".next"
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/static/:splat"
+  status = 200
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
