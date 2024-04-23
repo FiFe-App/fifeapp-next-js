@@ -7,7 +7,7 @@ import { Space_Mono } from 'next/font/google';
 import NextHead from 'next/head';
 import FirebaseProvider from '../firebase/firebase';
 import '@/css/layout.css'
-import Footer from '@/components/Footer';
+import Footer from '@/components/Footer/Footer';
 import '@/css/layout.css'
 import { Header } from '@/components'
 
@@ -35,9 +35,9 @@ export default function RootLayout({
                                 </Container>
                             </Box>
                             {children}
+                            <Footer />
                         </Theme>
                     </body>
-                    <Footer />
                   </html>
             </FirebaseProvider>
         </MyProvider>

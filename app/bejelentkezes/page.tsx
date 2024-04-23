@@ -1,10 +1,9 @@
 'use client'
 
 import { FirebaseContext } from "@/firebase/firebase";
-import { useWindowSize } from "@/lib/functions";
 import * as Label from '@radix-ui/react-label';
 import { Box, Button, ChevronDownIcon, Flex, Heading, Text, TextField } from "@radix-ui/themes";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { } from 'next/router';
 import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { LogoFacebook } from "react-ionicons";

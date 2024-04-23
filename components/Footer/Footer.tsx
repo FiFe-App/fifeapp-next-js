@@ -2,9 +2,9 @@
 
 import styles from './footer.module.css';
 import { useDispatch } from 'react-redux';
-import { setBugData } from '../lib/userReducer';
+import { setBugData } from '../../lib/userReducer';
 import { useState } from 'react';
-import { Auto } from './Auto';
+import { Auto } from '../Auto';
 import { Button, Flex, Text } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,15 +19,15 @@ const Footer = ({}) => {
         <Auto
          style={{backgroundColor:'#FDEEA2',padding:40,bottom:0,alignItems:small?'center':'stretch'}}>
             <Flex className='flex-on-small' style={{width:'100%',maxWidth:300}}>
-                <Image src={require('../assets/web_splash.png')} alt='logo'
+                <Image src={require('../../assets/web_splash.png')} alt='logo'
                  style={{flex:1,minHeight:100,width:'100%',alignSelf:'center',objectFit:'cover',objectPosition:small?'top center':'left center'}}/>
             </Flex>
             <Flex className='flex-on-small' style={{alignItems:small?'flex-end':'flex-start',minHeight:100}}>
-                <Link href=''>
-                    <Text weight='bold'>Légy részese</Text>
-                </Link>
+                <Text weight='bold'>Légy részese</Text>    
+                <Link href='/vegyel-reszt'><Text>Ötletdoboz</Text></Link>
+                <Link href='/vegyel-reszt'><Text>Csatlakozz a csapathoz!</Text></Link>
                 <Link href='mailto:kristofakos1229@gmail.com'><Text>Írj emailt!</Text></Link>
-                <Button variant='ghost' onClick={()=>dispatch(setBugData(true))} ><Text>Hibát találtam!</Text></Button>
+                <Text onClick={()=>dispatch(setBugData(true))}>Hibát találtam!</Text>
                 <Link target='_blank' href='https://patreon.com/fifeapp'><Text>Itt tudsz adományozni</Text></Link>
 
             </Flex>
