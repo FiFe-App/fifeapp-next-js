@@ -1,0 +1,40 @@
+.input_field {
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+    font-weight: 500;
+}
+
+.container {
+    background-color:rgb(253, 249, 229);
+    border-radius:50px;
+    padding:50px;
+    padding-top:0;
+    margin:5px;
+    margin-top:20px;
+    max-width:95%;
+    align-items:center
+}
+
+.title {
+    font-size: 120px;
+    color: 0;
+}
+.subTitle {
+    font-size:40px
+}
+
+@media (max-width: 900px) {
+    .container {
+        padding:50px;
+    }
+    .title {
+        text-align: center;
+        flex-grow: 1;
+        font-size: 70px;
+    }
+    .subTitle {
+        font-size:17px
+    }
+
+}
