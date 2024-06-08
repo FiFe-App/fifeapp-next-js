@@ -1,9 +1,9 @@
 [build]
-  command = "yarn build"
-  publish = ".next"
-[[redirects]]
-  from = "/_next/static/*"
-  to = "/static/:splat"
-  status = 200
+  command = "next build"
+  publish = "out"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"

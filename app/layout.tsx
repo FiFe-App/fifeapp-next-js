@@ -44,19 +44,6 @@ export default function RootLayout({
     )
 }
 
-const Head = () => {
-    return <head>
-        <NextHead>
-            <meta
-                name="viewport"
-                content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-                />
-                <link rel="icon" href="/favicon.ico" sizes="any" />
-            <title>FiFe App</title>
-        </NextHead>
-    </head>
-}
-
  
 export const metadata: Metadata = {
   title: 'FiFe App',
