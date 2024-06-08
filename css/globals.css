@@ -6,8 +6,8 @@
         'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
     --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: rgb(252, 243, 212);
-    --background-end-rgb: rgb(252, 243, 212);
+    --background-start-rgb: 252, 243, 212;
+    --background-end-rgb: 252, 243, 212;
 
     --background-secondary: rgb(252, 249, 239);
 
@@ -45,44 +45,8 @@
 .radix-themes {
     /*--color-background: rgb(252, 249, 239);*/
     --color-background: rgb(252, 243, 212);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: rgb(41, 40, 38);
-        --background-end-rgb: rgb(41, 40, 38);
-
-        --background-secondary: rgb(82 79 65);
-
-        --primary-glow: radial-gradient(
-            rgba(1, 65, 255, 0.4),
-            rgba(1, 65, 255, 0)
-        );
-        --secondary-glow: linear-gradient(
-            to bottom right,
-            rgba(1, 65, 255, 0),
-            rgba(1, 65, 255, 0),
-            rgba(1, 65, 255, 0.3)
-        );
-
-        --tile-start-rgb: 2, 13, 46;
-        --tile-end-rgb: 2, 5, 19;
-        --tile-border: conic-gradient(
-            #ffffff80,
-            #ffffff40,
-            #ffffff30,
-            #ffffff20,
-            #ffffff10,
-            #ffffff10,
-            #ffffff80
-        );
-
-        --callout-rgb: 20, 20, 20;
-        --callout-border-rgb: 108, 108, 108;
-        --card-rgb: 100, 100, 100;
-        --card-border-rgb: 200, 200, 200;
-    }
+    --default-font-family: var(--font-mono);
+    
 }
 
 * {
@@ -121,6 +85,33 @@ a {
     color: inherit;
     text-decoration: none;
 }
+a:hover {
+    text-decoration: underline;
+}
+
+.auto {
+    flex-direction: row;
+    display: flex;
+}
+.auto.reverse {
+    flex-direction: column;
+}
+.flex-on-small {
+    flex-grow:1;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .auto {
+        flex-direction: column;
+    }
+    .auto.reverse {
+        flex-direction: row;
+    }
+    .flex-on-small {
+        flex-grow:0;
+    }
+}
 
 .container {
     border-radius: 8px;
@@ -131,6 +122,6 @@ a {
 
 @media (prefers-color-scheme: dark) {
     html {
-        color-scheme: dark;
+        /* color-scheme: dark; */
     }
 }

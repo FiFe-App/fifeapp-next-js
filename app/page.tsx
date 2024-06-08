@@ -4,19 +4,22 @@ import styles from './page.module.css'
 import { Auto } from '@/components/Auto'
 import { Row } from '@/components/Row'
 import Image from 'next/image'
-import router from 'next/router'
 import { useState } from 'react'
-import AuthoredImage from '@/components/AuthoredImage'
+import AuthoredImage from '@/components/AuthoredImage/AuthoredImage'
 import Comments from '@/components/firebase/Comments'
-import { Box, Button, Container, Heading, Text } from '@radix-ui/themes'
+import { Box, Button, Container, Flex, Heading, Text } from '@radix-ui/themes'
 import { getDatabase, push, ref, set } from 'firebase/database'
 import { useWindowSize } from '@/lib/functions'
-import { Header } from '@/components'
+import { useRouter } from 'next/navigation'
+import NetlifyBadge from '@/components/NetlifyBadge/NetlifyBadge'
+import Link from 'next/link'
 
 const About = () => {
-    const small = useWindowSize().width <= 900
+    const width = useWindowSize().width;
+    const small = width<900;
+    
     const db = getDatabase()
-    const navigation = router
+    const router = useRouter()
     const [email, setEmail] = useState('')
     const [sent, setSent] = useState(false)
 
@@ -40,13 +43,13 @@ const About = () => {
 
     const next = () => {
         console.log('next')
-        navigation.push('/')
+        router.push('/')
         //localStorage.setItem('login',true)
     }
+    if (width!=undefined)
     return (
         <Box>
             <Container size="3">
-                <Header></Header>
                 <Box className="container">
                     <Text style={{ textAlign: 'left', fontSize: 17 }}>
                         {'\n'}A mai elszigetelt világban szükség van egy olyan
@@ -65,28 +68,26 @@ const About = () => {
                     }}
                 >
                     <Text
-                        className={styles.container}
+                        className={[styles.container, styles.last_on_small].join(' ')}
                         style={{
                             flexGrow: 1,
-                            marginBottom: 20,
-                            order: small ? 3 : 0,
+                            marginBottom: 20
                         }}
                     >
                         <Heading>Cserebere</Heading>
                         {'\n'}
                         Egy egyszerű adok-veszek oldal, ahol keresgélhetsz
-                        illetve hirdethetsz eladó tárgyak, munkák, kiadó lakások
-                        közt. Ezeket a cikkeket le tudod foglalni, és chatelni a
+                        illetve hirdethetsz a hozzád közeli tárgyak, munkák, kiadó lakások
+                        közt. Tudsz chatelni is a
                         hirdetővel.
                         {'\n'}
-                        <Box style={{ width: '100%', alignItems: 'center' }}>
-                            <Button>Megyek csereberélni!</Button>
+                        <Box style={{ width: '100%', alignItems: 'center' }} mt='3'>
+                            <Button highContrast>Megyek csereberélni!</Button>
                         </Box>
                     </Text>
                     <AuthoredImage
-                        authorName="Vitányi Regina"
+                        authorname="Vitányi Regina"
                         src={require('@/assets/img-prof.jpg')}
-                        resizeMode="contain"
                         style={{
                             height: 200,
                             width: 200,
@@ -175,7 +176,8 @@ const About = () => {
                             alignSelf: 'center',
                         }}
                     />
-                    <Text style={small ? { order: 3 } : {}}>
+                    <Text style={small ? { order: 3 } : {}}
+                    className={styles.container} my='3'>
                         <Heading>Pajtások</Heading>
                         {'\n'}Az oldal biztonságát az úgynevezett
                         pajtásrendszerrel biztosítjuk. Pajtásodnak akkor
@@ -184,11 +186,10 @@ const About = () => {
                         mennyiségű ember már megbízhatónak jelölt téged.
                     </Text>
                 </Auto>
-                <Box style={{}}>
+                <Box mt='3'>
                     <Text style={{ textAlign: 'center' }}>
                         <Heading>Csatlakozz a FiFék közösségéhez!</Heading>
-                        {'\n'}
-                        <Text>Fifék így nyilatkoztak...</Text>
+                        <Text>Fifék így nyilatkoztak:</Text>
                         <Comments
                             style={{ marginLeft: small ? 0 : 50 }}
                             path="aboutComments"
@@ -204,28 +205,16 @@ const About = () => {
                         />
                     </Text>
                 </Box>
-                <Auto style={{ flex: 'none' }}>
-                    <Text>
-                        <Heading>Rólam</Heading>
-                        {'\n'}
-                        Kristóf Ákos vagyok, én találtam ki és fejlesztem
-                        egyedül a fife appot. Ez egy olyan projekt, amibe
-                        szívemet-lelkemet bele tudom rakni, értetek, és egy jobb
-                        világért dolgozom rajta. Az oldal fenntartásához,
-                        fejlesztéséhez sok idő és pénz is kell, éppen ezért
-                        kérem a támogatásotokat. Ha neked is fontos a projekt
-                        célja, és szívesen használnád az appot, kérlek egy pár
-                        száz forinttal segítsd az elindulásunkat:){'\n'}
-                        <Button
-                            variant="soft"
-                            onClick={() => {
-                                location.replace('https://patreon.com/fifeapp')
-                            }}
-                            style={{ alignSelf: small ? 'center' : 'flex-end' }}
-                        >
-                            Itt tudsz adományozni!
-                        </Button>
-                    </Text>
+                <Auto style={{ flex: 'none' }} className={styles.container}>
+                    <Flex align='start'>
+                        <Flex flexGrow='1'>
+                            <Heading>Vegyél részt benne!</Heading>
+                            Ez az app a közösségről szól, arról, hogy együtt többet tudunk tenni a jó cél érdekében.
+                            A FiFe app egy nonprofit és open-source kezdeményezés amely egy összetartóbb társadalmat szeretne elérni,
+                            ha ezekkel az elvekkel te is egyetértesz, csatlakozz hozzánk!
+                        </Flex>
+                            <Link href='/vegyel-reszt'><Button highContrast>Miben tudok segíteni?</Button></Link>
+                    </Flex>
                     <Image
                         alt="Én"
                         src={require('@/assets/en.jpeg')}
@@ -260,6 +249,7 @@ const About = () => {
                         Regisztrálj!
                     </Button>
                 </Row>
+                <NetlifyBadge />
             </Container>
         </Box>
     )
