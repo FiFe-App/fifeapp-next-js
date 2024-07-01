@@ -7,8 +7,8 @@ export const config = () => {
 
     return {
         baseURL:
-            (process.env.NODE_ENV == 'development' && Platform.OS == 'web'
-                ? 'http://localhost:8888'
+            (process.env.NODE_ENV == 'development' && false
+                ? 'http://localhost:3000'
                 : 'https://fifeapp.hu') + '/.netlify/functions/index',
         headers: {
             authtoken: data?.user?.userData?.authtoken,

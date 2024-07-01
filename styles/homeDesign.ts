@@ -1,6 +1,9 @@
-import { StyleSheet } from 'react-native'
+import { CSSProperties } from "react";
 
-const styles = StyleSheet.create({
+interface StylesDictionary {
+    [Key: string]: CSSProperties;
+}
+const styles:StylesDictionary = {
     moduleContainer: {
         paddingBottom: 5,
         paddingTop: 5,
@@ -29,8 +32,8 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 0,
     },
     moduleScrollView: {
-        paddingHorizontal: 20,
-        marginHorizontal: 5,
+        padding: '0 20',
+        margin: '0 5',
     },
     bubble: {
         backgroundColor: 'white',
@@ -41,6 +44,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         borderTopRightRadius: 100,
     },
-})
+}
 
 export default styles
